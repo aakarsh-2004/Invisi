@@ -1,12 +1,15 @@
 import express from 'express';
 import { PrismaClient } from '@prisma/client';
+import userRouter from './routes/userRouter';
+import config from './config/config';
 
 const app = express();
 const prisma = new PrismaClient();
 
-const PORT = 7890 || process.env.PORT;
+app.use('/api/user', userRouter);
 
-app.listen(PORT, () => {
-    console.log(`${new Date()} : Server successfully started on port : ${PORT}`);
+
+app.listen(config.port, () => {
+    console.log(`${new Date()} : Server successfully started on port : ${config.port}`);
 })
 
